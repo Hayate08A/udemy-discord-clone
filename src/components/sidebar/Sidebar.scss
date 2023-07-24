@@ -41,5 +41,22 @@
       justify-content: space-between;
       padding: 20px;
     }
+
+    &__channels {
+      padding: 13px;
+      &__header {
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+
+        .sidebar-header {
+          display: flex;
+        }
+        .sidebar-add-icon {
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
