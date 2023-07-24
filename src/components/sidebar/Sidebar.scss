@@ -2,13 +2,13 @@
   display: flex;
   flex: 0.35;
   height: 100vh;
-  background-color: #600060; // TODO Homeへ移動
+  background-color: #980098; // TODO Homeへ移動
 
   &__left {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #980098;
+    background-color: #600060;
     padding: 7px 15px;
 
     .sever-icon {
