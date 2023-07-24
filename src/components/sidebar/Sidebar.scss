@@ -1,0 +1,29 @@
+.sidebar {
+  display: flex;
+  flex: 0.35;
+  height: 100vh;
+  background-color: gray;
+  &__left {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: center;
+    background-color: black;
+    padding: 7px 15px;
+  }
+  .sever-icon {
+    width: 55px;
+    height: 55px;
+    background-color: grey;
+    border-radius: 9999px;
+    margin-bottom: 10px;
+    position: relative;
+    img {
+      position: absolute;
+      width: 50px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
