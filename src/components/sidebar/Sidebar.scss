@@ -2,28 +2,35 @@
   display: flex;
   flex: 0.35;
   height: 100vh;
-  background-color: gray;
+  background-color: #600060; // TODO Homeへ移動
+
   &__left {
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
     align-items: center;
-    background-color: black;
+    background-color: #980098;
     padding: 7px 15px;
-  }
-  .sever-icon {
-    width: 55px;
-    height: 55px;
-    background-color: grey;
-    border-radius: 9999px;
-    margin-bottom: 10px;
-    position: relative;
-    img {
-      position: absolute;
-      width: 50px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+
+    .sever-icon {
+      width: 55px;
+      height: 55px;
+      background-color: #f900f9;
+      border-radius: 9999px;
+      margin-bottom: 10px;
+      position: relative;
+      margin-top: 7px;
+
+      img {
+        position: absolute;
+        width: 50px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
+  }
+
+  &__right {
+    background-color: #c600c6;
   }
 }
