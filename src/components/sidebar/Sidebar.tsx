@@ -13,7 +13,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="sidebar__right">
-        <div className="sidebar__top">
+        <div className="sidebar__right__top">
           <h3>discord</h3>
           <ExpandMoreIcon />
         </div>

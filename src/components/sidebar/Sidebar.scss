@@ -32,5 +32,14 @@
 
   &__right {
     background-color: #c600c6;
+    width: 300px;
+
+    &__top {
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
   }
 }
