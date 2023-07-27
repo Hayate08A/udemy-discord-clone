@@ -31,6 +31,7 @@
   }
 
   &__right {
+    position: relative;
     background-color: #c600c6;
     width: 300px;
 
@@ -55,6 +56,47 @@
         }
         .sidebar-add-icon {
           cursor: pointer;
+        }
+      }
+    }
+
+    &__footer {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 93%;
+      padding-bottom: 10px;
+      border-top: 1px solid white;
+      padding-top: 10px;
+      margin-left: -3px;
+
+      &__account {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 60px;
+        }
+
+        &__name {
+          margin-left: 5px;
+
+          h4 {
+            color: white;
+            font-weight: bold;
+          }
+
+          span {
+            color: gray;
+          }
+        }
+
+        &__voice {
+          display: flex;
+          align-items: center;
+          color: white;
         }
       }
     }

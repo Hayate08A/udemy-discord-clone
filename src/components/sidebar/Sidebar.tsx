@@ -44,11 +44,11 @@ const Sidebar = () => {
                 <h4>userName</h4>
                 <span>#ID</span>
               </div>
-              <div className="sidebar__right__footer__account__voice">
-                <MicIcon />
-                <HeadphonesIcon />
-                <SettingsIcon />
-              </div>
+            </div>
+            <div className="sidebar__right__footer__account__voice">
+              <MicIcon />
+              <HeadphonesIcon />
+              <SettingsIcon />
             </div>
           </div>
         </div>
