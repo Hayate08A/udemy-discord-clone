@@ -1,0 +1,22 @@
+.sidebar-channel {
+  padding-left: 20px;
+  margin-top: 2px;
+  h4 {
+    color: violet;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+      background-color: blueviolet;
+      border-radius: 7px;
+    }
+  }
+  &__hash {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+}
