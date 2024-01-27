@@ -4,4 +4,34 @@
   justify-content: space-between;
   width: 100%;
   padding-top: 10px;
+  &__left {
+    padding-left: 15px;
+    &__hash {
+      color: aqua;
+      padding-right: 7px;
+    }
+  }
+  &__right {
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: aqua;
+    &__search {
+      display: flex;
+      align-items: center;
+      background-color: aqua;
+      padding: 3px;
+      border-radius: 3px;
+      & input {
+        background: transparent;
+        outline: none;
+        color: white;
+        border: none;
+      }
+    }
+    .MuiSvgIcon-root {
+      cursor: pointer;
+    }
+  }
 }

@@ -19,7 +19,7 @@ const ChatHeader = () => {
         <NotificationsIcon />
         <PushPinIcon />
         <PeopleAltIcon />
-        <div className="chat-header__search">
+        <div className="chat-header__right__search">
           <input type="text" placeholder="検索" />
           <SearchIcon />
         </div>
