@@ -6,6 +6,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import GifIcon from '@mui/icons-material/Gif';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import ChatMassage from './ChatMassage';
 
 function Chat() {
   return (
@@ -13,7 +14,12 @@ function Chat() {
       {/* chatHeader */}
       <ChatHeader />
       {/* chatMessage */}
-      <div className="chatMessage"></div>
+      <div className="chat__message">
+        <ChatMassage />
+        <ChatMassage />
+        <ChatMassage />
+        <ChatMassage />
+      </div>
       {/* chatInput */}
       <div className="chat__input">
         <AddCircleOutlineIcon />
