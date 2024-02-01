@@ -6,16 +6,17 @@ import SidebarChannel from './sidebarChannel/SidebarChannel';
 import MicIcon from '@mui/icons-material/Mic';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
+import iconDiscord from '../../images/discordIcon.png';
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__left">
         <div className="sever-icon">
-          <img src="./logo192.png" alt="ロゴ" />
+          <img src={iconDiscord} alt="ロゴ" />
         </div>
         <div className="sever-icon">
-          <img src="./logo192.png" alt="ロゴ" />
+          <img src={iconDiscord} alt="ロゴ" />
         </div>
       </div>
       <div className="sidebar__right">
