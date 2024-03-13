@@ -7,8 +7,12 @@ import MicIcon from '@mui/icons-material/Mic';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import iconDiscord from '../../images/discordIcon.png';
+import { auth } from '../../firebase';
+import { useAppSelector } from '../../app/hooks';
 
 const Sidebar = () => {
+  const user = useAppSelector((state) => state.user);
+
   return (
     <div className="sidebar">
       <div className="sidebar__left">
@@ -40,10 +44,10 @@ const Sidebar = () => {
           </div>
           <div className="sidebar__right__footer">
             <div className="sidebar__right__footer__account">
-              <img src="./icon.png" alt="" />
+              <img src={user?.photo} alt="" onClick={() => auth.signOut()} />
               <div className="sidebar__right__footer__account__name">
-                <h4>userName</h4>
-                <span>#ID</span>
+                <h4>{user?.displayName}</h4>
+                <span>#{user?.uid.substring(0, 4)}</span>
               </div>
             </div>
             <div className="sidebar__right__footer__account__voice">

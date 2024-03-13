@@ -40,9 +40,7 @@ function App() {
           <Chat />
         </>
       ) : (
-        <>
-          <Login />
-        </>
+        <Login />
       )}
     </div>
   );
