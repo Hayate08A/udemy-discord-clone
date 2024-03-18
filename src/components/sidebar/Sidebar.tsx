@@ -1,30 +1,18 @@
-import { useEffect, useState } from 'react';
 import './Sidebar.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
-import SidebarChannel, { TChannelInfo } from './sidebarChannel/SidebarChannel';
+import SidebarChannel from './sidebarChannel/SidebarChannel';
 import MicIcon from '@mui/icons-material/Mic';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import iconDiscord from '../../images/discordIcon.png';
-import { auth, db } from '../../firebase';
+import { auth } from '../../firebase';
 import { useAppSelector } from '../../app/hooks';
-import { onSnapshot, collection, query } from 'firebase/firestore';
+import useCollection from '../../hooks/useCollection';
 
 const Sidebar = () => {
-  const [channelInfos, setChannelInfos] = useState<TChannelInfo[]>([]);
+  const channelInfos = useCollection({ queryName: 'channels' });
   const user = useAppSelector((state) => state.user);
-
-  const q = query(collection(db, 'channels'));
-  useEffect(() => {
-    onSnapshot(q, (querySnapshot) => {
-      setChannelInfos(
-        querySnapshot.docs.map((channelDoc) => {
-          return { id: channelDoc.id, channel: channelDoc.data() };
-        })
-      );
-    });
-  }, []);
 
   return (
     <div className="sidebar">
