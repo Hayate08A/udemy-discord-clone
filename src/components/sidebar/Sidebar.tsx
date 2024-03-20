@@ -13,7 +13,7 @@ import { addDoc, collection } from 'firebase/firestore';
 
 const Sidebar = () => {
   const channelInfos = useCollection({ queryName: 'channels' });
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
 
   const addChannel = async () => {
     let channelName: string | null = prompt('新しいチャンネルを作成します');

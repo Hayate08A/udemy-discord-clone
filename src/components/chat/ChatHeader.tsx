@@ -6,13 +6,19 @@ import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
 import HelpIcon from '@mui/icons-material/Help';
 
-const ChatHeader = () => {
+type TProps = {
+  channelName?: string;
+};
+
+const ChatHeader = (props: TProps) => {
+  const { channelName } = props;
+
   return (
     <div className="chat-header">
       <div className="chat-header__left">
         <h3>
           <span className="chat-header__Hash">#</span>
-          Udemy
+          {channelName}
         </h3>
       </div>
       <div className="chat-header__right">

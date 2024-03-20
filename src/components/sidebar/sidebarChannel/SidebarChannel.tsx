@@ -1,6 +1,8 @@
 import React from 'react';
 import './SidebarChannel.scss';
 import { DocumentData } from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
+import { setChannelInfo } from '../../../features/channelSlice';
 
 export type TChannelInfo = {
   id: string;
@@ -9,9 +11,20 @@ export type TChannelInfo = {
 
 const SidebarChannel = (props: TChannelInfo) => {
   const { id, channel } = props;
-  console.log(`🚀 ~ channel:`, channel);
+  const dispatch = useDispatch();
+
   return (
-    <div className="sidebar-channel">
+    <div
+      className="sidebar-channel"
+      onClick={() =>
+        dispatch(
+          setChannelInfo({
+            channelId: id,
+            channelName: channel.channelName,
+          })
+        )
+      }
+    >
       <h4>
         <span className="sidebar-channel__hash">#</span>
         {channel.channelName}
