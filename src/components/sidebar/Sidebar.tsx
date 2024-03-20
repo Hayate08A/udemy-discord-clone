@@ -6,13 +6,23 @@ import MicIcon from '@mui/icons-material/Mic';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import iconDiscord from '../../images/discordIcon.png';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { useAppSelector } from '../../app/hooks';
 import useCollection from '../../hooks/useCollection';
+import { addDoc, collection } from 'firebase/firestore';
 
 const Sidebar = () => {
   const channelInfos = useCollection({ queryName: 'channels' });
   const user = useAppSelector((state) => state.user);
+
+  const addChannel = async () => {
+    let channelName: string | null = prompt('新しいチャンネルを作成します');
+    if (channelName) {
+      await addDoc(collection(db, 'channels'), {
+        channelName,
+      });
+    }
+  };
 
   return (
     <div className="sidebar">
@@ -35,7 +45,10 @@ const Sidebar = () => {
               <ExpandMoreIcon />
               <h4>チャンネル一覧</h4>
             </div>
-            <AddIcon className="sidebar-add-icon" />
+            <AddIcon
+              className="sidebar-add-icon"
+              onClick={() => addChannel()}
+            />
           </div>
           <div className="sidebar-channel-list">
             {channelInfos.map((channelInfo) => (
