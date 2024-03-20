@@ -20,41 +20,17 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TMessages } from '../../Types';
+import useSubCollection from '../../hooks/useSubCollection';
 
 function Chat() {
   const [inputText, setInputText] = useState<string>('');
-  const [messages, setMessages] = useState<TMessages[]>([]);
   const channelName = useAppSelector((state) => state.channel.channelName);
-  const channelId = useAppSelector((state) => state.channel.channelId);
   const user = useAppSelector((state) => state.user.user);
-  console.log(`🚀 ~ inputText:`, inputText);
-
-  useEffect(() => {
-    const collectionRef = collection(
-      db,
-      'channels',
-      String(channelId),
-      'messages'
-    );
-    const collectionRefOrderBy = query(
-      collectionRef,
-      orderBy('timestamp', 'asc')
-    );
-
-    onSnapshot(collectionRefOrderBy, (snapshot) => {
-      const results: TMessages[] = snapshot.docs.map((doc) => {
-        const docData = doc.data();
-        console.log(`🚀 ~ docData:`, docData);
-        return {
-          timestamp: docData.timestamp,
-          message: docData.message,
-          user: docData.user,
-        };
-      });
-      setMessages(results);
-      console.log(`🚀 ~ messages:`, messages);
-    });
-  }, [channelId]);
+  const channelId = useAppSelector((state) => state.channel.channelId);
+  const messages = useSubCollection({
+    collectionName: 'channels',
+    subCollectionName: 'messages',
+  });
 
   const sendMassage = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
