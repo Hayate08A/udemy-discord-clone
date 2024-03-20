@@ -14,6 +14,8 @@ import {
   addDoc,
   collection,
   onSnapshot,
+  orderBy,
+  query,
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../../firebase';
@@ -34,8 +36,12 @@ function Chat() {
       String(channelId),
       'messages'
     );
+    const collectionRefOrderBy = query(
+      collectionRef,
+      orderBy('timestamp', 'asc')
+    );
 
-    onSnapshot(collectionRef, (snapshot) => {
+    onSnapshot(collectionRefOrderBy, (snapshot) => {
       const results: TMessages[] = snapshot.docs.map((doc) => {
         const docData = doc.data();
         console.log(`🚀 ~ docData:`, docData);
@@ -69,7 +75,8 @@ function Chat() {
         user: user,
       }
     );
-    console.log(`🚀 ~ docRef:`, docRef);
+    // console.log(`🚀 ~ docRef:`, docRef);
+    setInputText('');
   };
 
   return (
@@ -98,6 +105,7 @@ function Chat() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setInputText(e.target.value)
             }
+            value={inputText}
           />
           <button
             type="submit"
