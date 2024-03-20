@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Chat.scss';
 import ChatHeader from './ChatHeader';
 import './ChatHeader.scss';
@@ -13,16 +13,42 @@ import {
   DocumentReference,
   addDoc,
   collection,
+  onSnapshot,
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { TMessages } from '../../Types';
 
 function Chat() {
   const [inputText, setInputText] = useState<string>('');
+  const [messages, setMessages] = useState<TMessages[]>([]);
   const channelName = useAppSelector((state) => state.channel.channelName);
   const channelId = useAppSelector((state) => state.channel.channelId);
   const user = useAppSelector((state) => state.user.user);
   console.log(`🚀 ~ inputText:`, inputText);
+
+  useEffect(() => {
+    const collectionRef = collection(
+      db,
+      'channels',
+      String(channelId),
+      'messages'
+    );
+
+    onSnapshot(collectionRef, (snapshot) => {
+      const results: TMessages[] = snapshot.docs.map((doc) => {
+        const docData = doc.data();
+        console.log(`🚀 ~ docData:`, docData);
+        return {
+          timestamp: docData.timestamp,
+          message: docData.message,
+          user: docData.user,
+        };
+      });
+      setMessages(results);
+      console.log(`🚀 ~ messages:`, messages);
+    });
+  }, [channelId]);
 
   const sendMassage = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -38,7 +64,7 @@ function Chat() {
     const docRef: DocumentReference<DocumentData> = await addDoc(
       collectionRef,
       {
-        massage: inputText,
+        message: inputText,
         timestamp: serverTimestamp(),
         user: user,
       }
@@ -52,10 +78,15 @@ function Chat() {
       <ChatHeader channelName={channelName} />
       {/* chatMessage */}
       <div className="chat__message">
-        <ChatMassage />
-        <ChatMassage />
-        <ChatMassage />
-        <ChatMassage />
+        {messages.map((message, i) => (
+          // TODO 固有のkey
+          <ChatMassage
+            key={`message_${i}`}
+            message={message.message}
+            timestamp={message.timestamp}
+            user={message.user}
+          />
+        ))}
       </div>
       {/* chatInput */}
       <div className="chat__input">
