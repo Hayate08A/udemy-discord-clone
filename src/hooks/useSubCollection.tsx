@@ -1,13 +1,5 @@
-import {
-  query,
-  collection,
-  onSnapshot,
-  Query,
-  DocumentData,
-  orderBy,
-} from 'firebase/firestore';
+import { query, collection, onSnapshot, orderBy } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { TChannelInfo } from '../components/sidebar/sidebarChannel/SidebarChannel';
 import { db } from '../firebase';
 import { useAppSelector } from '../app/hooks';
 import { TMessages } from '../Types';
@@ -45,6 +37,7 @@ const useSubCollection = (props: TProps) => {
       });
       setSubDocuments(results);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelId]);
   return subDocuments;
 };

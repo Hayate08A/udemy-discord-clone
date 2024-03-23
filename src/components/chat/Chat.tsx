@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Chat.scss';
 import ChatHeader from './ChatHeader';
 import './ChatHeader.scss';
@@ -8,18 +8,8 @@ import GifIcon from '@mui/icons-material/Gif';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import ChatMassage from './ChatMassage';
 import { useAppSelector } from '../../app/hooks';
-import {
-  DocumentData,
-  DocumentReference,
-  addDoc,
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase';
-import { TMessages } from '../../Types';
 import useSubCollection from '../../hooks/useSubCollection';
 
 function Chat() {
@@ -36,30 +26,23 @@ function Chat() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    console.log('sendMassage');
     const collectionRef = collection(
       db,
       'channels',
       String(channelId),
       'messages'
     );
-    const docRef: DocumentReference<DocumentData> = await addDoc(
-      collectionRef,
-      {
-        message: inputText,
-        timestamp: serverTimestamp(),
-        user: user,
-      }
-    );
-    // console.log(`🚀 ~ docRef:`, docRef);
+    await addDoc(collectionRef, {
+      message: inputText,
+      timestamp: serverTimestamp(),
+      user: user,
+    });
     setInputText('');
   };
 
   return (
     <div className="chat">
-      {/* chatHeader */}
       <ChatHeader channelName={channelName} />
-      {/* chatMessage */}
       <div className="chat__message">
         {messages.map((message, i) => (
           // TODO 固有のkey
@@ -71,7 +54,6 @@ function Chat() {
           />
         ))}
       </div>
-      {/* chatInput */}
       <div className="chat__input">
         <AddCircleOutlineIcon />
         <form>

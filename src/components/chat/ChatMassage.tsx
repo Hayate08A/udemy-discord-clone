@@ -1,4 +1,3 @@
-import React from 'react';
 import './ChatMassage.scss';
 import { Avatar } from '@mui/material';
 import { TMessages } from '../../Types';

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import './App.scss';
 import Sidebar from './components/sidebar/Sidebar';
 import Chat from './components/chat/Chat';
@@ -11,13 +11,10 @@ import { ErrorFallBack } from './utils/ErrorFallBack';
 
 function App() {
   const user = useAppSelector((state) => state.user.user);
-  console.log(`🚀 ~ user:`, user);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     auth.onAuthStateChanged((loginUser) => {
-      console.log(`🚀 ~ loginUser:`, loginUser);
       if (loginUser) {
         dispatch(
           login({
